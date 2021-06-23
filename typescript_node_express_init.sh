@@ -6,6 +6,7 @@ git init
 {
     echo "node_modules/"
     echo "typescript_webpack_init.sh"
+    echo ".env"
 } > .gitignore
 
 # nodeプロジェクト初期化
@@ -33,9 +34,9 @@ npm isntall --save-dev eslint eslint-config-prettier eslint-plugin-prettier @typ
 
 
 # 便利なツール導入
-npm install -D rimraf npm-run-all
+npm install -D rimraf npm-run-all dotenv
 
-npm install --save express
+npm install --save express 
 npm install --save-dev @types/express body-parser
 echo "***add below commands to package.json***"
 echo '"main":"dist/index.js",'

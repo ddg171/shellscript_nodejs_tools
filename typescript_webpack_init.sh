@@ -6,6 +6,7 @@ git init
 {
     echo "node_modules/"
     echo "typescript_webpack_init.sh"
+    echo ".env"
 } > .gitignore
 
 # nodeのプロジェクト初期化
@@ -13,6 +14,11 @@ npm init -y
 
 # typescriptとwebpack用のローダー
 npm i -D webpack webpack-cli typescript ts-loader
+
+# 環境変数
+npm i dotenv
+
+touch .env
 
 # typescriptの初期化
 ./node_modules/.bin/tsc --init
