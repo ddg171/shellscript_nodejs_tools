@@ -7,6 +7,7 @@ git init
     echo "node_modules/"
     echo "typescript_webpack_init.sh"
     echo ".env"
+    echo "dist"
 } > .gitignore
 
 # nodeプロジェクト初期化
@@ -19,15 +20,16 @@ npm install --save-dev typescript ts-node ts-node-dev
 ./node_modules/.bin/tsc --init
 
 # eslint
-npm isntall --save-dev eslint eslint-config-prettier eslint-plugin-prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser prettier
+npm isntall --save-dev eslint  @typescript-eslint/eslint-plugin @typescript-eslint/parser @typescript-eslint
 # eslint設定ファイル
 {
     echo '{'
     echo  '"parser": "@typescript-eslint/parser",'
+    echo  '"plugins": ['
+    echo  '"@typescript-eslint"'
+    echo  '],'
     echo  '"extends": ['
     echo    '"plugin:@typescript-eslint/recommended",'
-    echo    '"plugin:prettier/recommended",'
-    echo    '"prettier/@typescript-eslint"'
     echo  ']'
     echo '}'
 } > .eslintrc
@@ -43,7 +45,8 @@ echo '"main":"dist/index.js",'
 echo '"dev":"ts-node-dev src/index.ts",'
 echo '"clean": "rimraf dist/*.js",'
 echo '"tsc": "tsc",'
-echo '"build": "npm-run-all clean tsc",'
+echo '"lint": "eslint ./src/**/*.ts --fix",'
+echo '"build": "npm-run-all clean lint tsc",'
 echo '"start": "node ./dist/index.js"'
 
 echo '***add below option to CompileOptions of tsconfig.json***'
