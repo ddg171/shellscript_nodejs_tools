@@ -42,7 +42,7 @@ npm install --save express
 npm install --save-dev @types/express body-parser
 echo "***add below commands to package.json***"
 echo '"main":"dist/index.js",'
-echo '"dev":"ts-node-dev src/index.ts",'
+echo '"dev":"ts-node-dev --files src/index.ts",'
 echo '"clean": "rimraf dist/*.js",'
 echo '"tsc": "tsc",'
 echo '"lint": "eslint ./src/**/*.ts --fix",'
