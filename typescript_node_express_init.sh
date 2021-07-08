@@ -34,14 +34,26 @@ npm isntall --save-dev eslint  @typescript-eslint/eslint-plugin @typescript-esli
     echo '}'
 } > .eslintrc
 
-
 # 便利なツール導入
 npm install -D rimraf npm-run-all
+# テストフレームワーク
+npm i jest ts-jest @types/jest
+
+# jest設定ファイル
+{
+    echo 'export default {'
+    echo  'coverageProvider: "v8",'
+    echo  'roots: ["<rootDir>/src"],'
+    echo  'transform: { "^.+\\.(ts|tsx)$": "ts-jest" },'
+    echo '};'
+} > jest.config.ts
+
 
 npm install --save express  dotenv
 npm install --save-dev @types/express body-parser
 echo "***add below commands to package.json***"
 echo '"main":"dist/index.js",'
+echo '"test":"jest",'
 echo '"dev":"ts-node-dev --files src/index.ts",'
 echo '"clean": "rimraf dist/*.js",'
 echo '"tsc": "tsc",'
