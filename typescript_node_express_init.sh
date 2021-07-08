@@ -36,9 +36,9 @@ npm isntall --save-dev eslint  @typescript-eslint/eslint-plugin @typescript-esli
 
 
 # 便利なツール導入
-npm install -D rimraf npm-run-all dotenv
+npm install -D rimraf npm-run-all
 
-npm install --save express 
+npm install --save express  dotenv
 npm install --save-dev @types/express body-parser
 echo "***add below commands to package.json***"
 echo '"main":"dist/index.js",'
