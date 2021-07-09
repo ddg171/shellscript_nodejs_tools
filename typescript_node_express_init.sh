@@ -65,7 +65,12 @@ npm set-script build "npm-run-all clean lint tsc"
 npm set-script start "node ./dist/index.js"
 
 
+npm i --save-dev husky
+npm set-script prepare "husky install"
+npm run prepare
 
+npx husky add .husky/pre-commit "npm run check"
+git add .husky/pre-commit
 
 echo "***add this line to package.json***"
 echo '"main":"dist/index.js",'
