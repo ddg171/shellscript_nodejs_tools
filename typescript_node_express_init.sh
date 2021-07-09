@@ -51,17 +51,18 @@ npm i jest ts-jest @types/jest
 
 npm install --save express  dotenv
 npm install --save-dev @types/express body-parser
-echo "***add below commands to package.json***"
+# スクリプト追加
+npm set-script test "jest"
+npm set-script dev "ts-node-dev --files src/index.ts"
+npm set-script dev clean "rimraf dist/*.js"
+npm set-script tsc "tsc"
+npm set-script tsc:check "tsc --noEmit"
+npm set-script lint "eslint ./src/**/*.ts --fix"
+npm set-script check "npm-run-all lint tsc:check"
+npm set-script build "npm-run-all clean lint tsc"
+npm set-script start "node ./dist/index.js"
+echo "***add this line to package.json***"
 echo '"main":"dist/index.js",'
-echo '"test":"jest",'
-echo '"dev":"ts-node-dev --files src/index.ts",'
-echo '"clean": "rimraf dist/*.js",'
-echo '"tsc": "tsc",'
-echo '"tsc:check": "tsc --noEmit",'
-echo '"lint": "eslint ./src/**/*.ts --fix",'
-echo '"check": "npm-run-all lint tsc:check",'
-echo '"build": "npm-run-all clean lint tsc",'
-echo '"start": "node ./dist/index.js"'
 
 echo '***add below option to CompileOptions of tsconfig.json***'
 echo ' "outDir": "./dist",'
