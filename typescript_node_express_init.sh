@@ -4,7 +4,7 @@ git init
 
 # 除外ファイル
 {
-    echo "node_modules/"
+    echo "node_modules"
     echo "typescript_webpack_init.sh"
     echo ".env"
     echo "dist"
@@ -20,7 +20,7 @@ npm install --save-dev typescript ts-node ts-node-dev
 ./node_modules/.bin/tsc --init
 
 # eslint
-npm isntall --save-dev eslint  @typescript-eslint/eslint-plugin @typescript-eslint/parser @typescript-eslint
+npm install --save-dev eslint  @typescript-eslint/eslint-plugin @typescript-eslint/parser @typescript-eslint
 # eslint設定ファイル
 {
     echo '{'
@@ -50,6 +50,8 @@ npm i jest ts-jest @types/jest
 
 
 npm install --save express  dotenv
+touch .env
+
 npm install --save-dev @types/express body-parser
 # スクリプト追加
 npm set-script test "jest"
@@ -61,6 +63,10 @@ npm set-script lint "eslint ./src/**/*.ts --fix"
 npm set-script check "npm-run-all lint tsc:check"
 npm set-script build "npm-run-all clean lint tsc"
 npm set-script start "node ./dist/index.js"
+
+
+
+
 echo "***add this line to package.json***"
 echo '"main":"dist/index.js",'
 
