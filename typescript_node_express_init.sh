@@ -70,7 +70,8 @@ npm set-script prepare "husky install"
 npm run prepare
 
 npx husky add .husky/pre-commit "npm run check"
-git add .husky/pre-commit
+npx husky add .husky/pre-push "npm run test"
+
 
 echo "***add this line to package.json***"
 echo '"main":"dist/index.js",'
