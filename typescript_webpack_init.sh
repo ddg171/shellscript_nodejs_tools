@@ -25,14 +25,17 @@ touch .env
 # webpackの導入
 npm isntall --save-dev eslint eslint-config-prettier eslint-plugin-prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser prettier
 
-
+# eslint
+npm install --save-dev eslint  @typescript-eslint/eslint-plugin @typescript-eslint/parser
+# eslint設定ファイル
 {
     echo '{'
     echo  '"parser": "@typescript-eslint/parser",'
+    echo  '"plugins": ['
+    echo  '"@typescript-eslint"'
+    echo  '],'
     echo  '"extends": ['
     echo    '"plugin:@typescript-eslint/recommended",'
-    echo    '"plugin:prettier/recommended",'
-    echo    '"prettier/@typescript-eslint"'
     echo  ']'
     echo '}'
 } > .eslintrc
@@ -87,11 +90,26 @@ echo "};"
 # 便利なツール導入
 npm install -D rimraf npm-run-all
 
-echo "***add below commands to package.json***"
-echo '"dev":"npx webpack --config webpack.config.dev.js",'
-echo '"pro":"npx webpack --config webpack.config.pro.js",'
-echo '"clean": "rimraf dist/*.js",'
-echo '"build": "npm-run-all clean pro",'
+# テストフレームワーク
+npm i jest ts-jest @types/jest
+
+# jest設定ファイル
+{
+    echo 'export default {'
+    echo  'coverageProvider: "v8",'
+    echo  'roots: ["<rootDir>/src"],'
+    echo  'transform: { "^.+\\.(ts|tsx)$": "ts-jest" },'
+    echo '};'
+} > jest.config.ts
+
+npm set-script dev "npx webpack --config webpack.config.dev.js"
+npm set-script lint "eslint ./src/**/*.ts --fix"
+npm set-script tsc:check "tsc --noEmit"
+npm set-script check "npm-run-all lint tsc:check"
+npm set-script pro "npx webpack --config webpack.config.pro.js"
+npm set-script clean "rimraf dist/*.js"
+npm set-script build "npm-run-all clean pro"
+
 
 echo '***add below option to CompileOptions of jsconfig.json***'
 echo ' "outDir": "./dist",'
@@ -99,6 +117,14 @@ echo ' "outDir": "./dist",'
 echo '***add below option to tsconfig.json***'
 echo  '"include": ["src/**/*"],'
 echo '"exclude": ["node_modules"]'
+
+
+npm i --save-dev husky
+npm set-script prepare "husky install"
+npm run prepare
+
+npx husky add .husky/pre-commit "npm run check"
+npx husky add .husky/pre-push "npm run test"
 
 mkdir dist
 mkdir src
