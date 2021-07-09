@@ -5,7 +5,7 @@ git init
 # 除外ファイル
 {
     echo "node_modules"
-    echo "typescript_webpack_init.sh"
+    echo "typescript_node_express_init.sh"
     echo ".env"
     echo "dist"
 } > .gitignore
@@ -20,7 +20,7 @@ npm install --save-dev typescript ts-node ts-node-dev
 ./node_modules/.bin/tsc --init
 
 # eslint
-npm install --save-dev eslint  @typescript-eslint/eslint-plugin @typescript-eslint/parser @typescript-eslint
+npm install --save-dev eslint  @typescript-eslint/eslint-plugin @typescript-eslint/parser
 # eslint設定ファイル
 {
     echo '{'
