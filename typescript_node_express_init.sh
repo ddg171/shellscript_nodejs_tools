@@ -53,6 +53,11 @@ npm install --save express  dotenv
 touch .env
 
 npm install --save-dev @types/express body-parser
+
+# 絶対使うであろうライブラリを追加
+npm i date-fns uuid
+npm i --save-dev @types/uuid
+
 # スクリプト追加
 npm set-script test "jest"
 npm set-script dev "ts-node-dev --files src/index.ts"

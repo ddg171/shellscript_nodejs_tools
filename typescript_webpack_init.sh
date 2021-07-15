@@ -119,6 +119,10 @@ echo  '"include": ["src/**/*"],'
 echo '"exclude": ["node_modules"]'
 
 
+# 絶対使うであろうライブラリを追加
+npm i date-fns uuid
+npm i --save-dev @types/uuid
+
 npm i --save-dev husky
 npm set-script prepare "husky install"
 npm run prepare
