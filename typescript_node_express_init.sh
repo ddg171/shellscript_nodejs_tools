@@ -21,6 +21,8 @@ npm install --save-dev typescript ts-node ts-node-dev
 
 # eslint
 npm install --save-dev eslint  @typescript-eslint/eslint-plugin @typescript-eslint/parser
+# prettier
+npm install --save-dev prettier eslint-config-prettier
 # eslint設定ファイル
 {
     echo '{'
@@ -30,9 +32,21 @@ npm install --save-dev eslint  @typescript-eslint/eslint-plugin @typescript-esli
     echo  '],'
     echo  '"extends": ['
     echo    '"plugin:@typescript-eslint/recommended",'
+    echo    '"prettier",'
+    echo    '"prettier/@typescript-eslint",'
     echo  ']'
     echo '}'
 } > .eslintrc
+# prettier設定
+echo "{}"> .prettierrc.json
+touch .prettierignore
+
+# 除外設定
+/dist　>> .prettierignore
+node_modules >> .prettierignore
+package.json >> .prettierignore
+package-lock.json >> .prettierignore
+tsconfig.json >> .prettierignore
 
 # 便利なツール導入
 npm install -D rimraf npm-run-all
